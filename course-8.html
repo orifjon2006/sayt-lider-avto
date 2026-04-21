@@ -2,165 +2,813 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Lider Avtotex 555 | Tent va Tentovka</title>
-  <meta name="description" content="Lider Avtotex 555 tomonidan tayyorlanadigan tent va tentovka yechimlari: galvaniz karkas, suvga chidamli tent, yon va orqa ochiladigan konstruksiyalar.">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Lider Avtotex 555 tent va tentovka xizmatlari: galvaniz karkas, suvga chidamli tent mato, yon va orqa ochiladigan kuzovlar, buyurtma asosida kafolat bilan.">
+  <meta name="theme-color" content="#090909">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #f6efe7;
-      --paper: #fffdfa;
-      --ink: #171717;
-      --muted: #636363;
-      --brand: #c75c1d;
-      --brand-soft: #ffe1cd;
-      --line: rgba(23, 23, 23, 0.08);
+    :root{
+      --red:#C8102E;
+      --red-mid:#9F0D24;
+      --red-soft:rgba(200,16,46,.11);
+      --red-border:rgba(200,16,46,.28);
+      --bg:#090909;
+      --s1:#111;
+      --s2:#171717;
+      --s3:#202020;
+      --text:#fff;
+      --muted:rgba(255,255,255,.58);
+      --muted2:rgba(255,255,255,.34);
+      --border:rgba(255,255,255,.09);
     }
-    body {
-      margin: 0;
-      font-family: 'Manrope', sans-serif;
-      color: var(--ink);
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      color:var(--text);
+      background:transparent;
+      overflow-x:hidden;
+      padding-bottom:96px;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+
+    #pagebg-wrap{
+      position:fixed;
+      inset:0;
+      z-index:-3;
+      overflow:hidden;
+      pointer-events:none;
+      background:#090909;
+    }
+    #pagebg-video{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.08)}
+    #pagebg-wrap::after{
+      content:'';
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at left top, rgba(199, 92, 29, 0.13), transparent 28%),
-        radial-gradient(circle at right bottom, rgba(241, 161, 115, 0.16), transparent 24%),
-        var(--bg);
+        linear-gradient(180deg,rgba(9,9,9,.86),rgba(9,9,9,.68) 36%,rgba(9,9,9,.86)),
+        radial-gradient(circle at 76% 18%,rgba(200,16,46,.2),transparent 35%),
+        radial-gradient(circle at 10% 86%,rgba(255,255,255,.07),transparent 28%);
     }
-    h1, h2, h3, h4 {
-      font-family: 'Space Grotesk', sans-serif;
+    body::after{
+      content:'';
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      pointer-events:none;
+      opacity:.03;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
-    .card {
-      background: rgba(255, 253, 250, 0.82);
-      backdrop-filter: blur(18px);
-      border: 1px solid var(--line);
-      box-shadow: 0 24px 60px rgba(23, 23, 23, 0.06);
+
+    h1,h2,h3,.bb{font-family:'Bebas Neue',sans-serif;letter-spacing:.025em}
+    .wrap{width:min(1180px,calc(100% - 32px));margin-inline:auto}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:none;
+      cursor:pointer;
+      border-radius:7px;
+      padding:14px 24px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      transition:.22s ease;
     }
+    .btn-red{background:var(--red);color:#fff;box-shadow:0 18px 42px rgba(200,16,46,.28)}
+    .btn-red:hover{background:#e11436;transform:translateY(-2px)}
+    .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border);color:#fff}
+    .btn-ghost:hover{border-color:var(--red-border);background:var(--red-soft);transform:translateY(-2px)}
+
+    .nav{
+      position:fixed;
+      inset:0 0 auto 0;
+      z-index:80;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px clamp(16px,4vw,46px);
+      border-bottom:1px solid transparent;
+      transition:.22s ease;
+    }
+    .nav.scrolled{
+      background:rgba(9,9,9,.78);
+      border-bottom-color:var(--border);
+      backdrop-filter:blur(18px);
+    }
+    .nl{display:flex;align-items:center;gap:12px;min-width:0}
+    .nlm{position:relative;width:78px;height:78px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .nlm svg{position:absolute;inset:0;width:100%;height:100%;animation:spinText 13s linear infinite}
+    .nlm text{font-size:8.3px;fill:#fff;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+    .nlm-core{
+      width:48px;height:48px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.18),0 12px 32px rgba(0,0,0,.42);
+      overflow:hidden;
+    }
+    .nlm-core img{width:100%;height:100%;object-fit:contain}
+    .nltitle{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .nlsub{margin-top:4px;font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+    @keyframes spinText{to{transform:rotate(360deg)}}
+    .nav-links{display:none;align-items:center;gap:28px;list-style:none}
+    .nav-links a{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:.2s}
+    .nav-links a:hover{color:#fff}
+    #nav-cta{display:none}
+    @media(min-width:980px){.nav-links,#nav-cta{display:flex}}
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:138px 0 92px;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:'TENT';
+      position:absolute;
+      right:-4vw;
+      top:17%;
+      z-index:-1;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(130px,25vw,380px);
+      line-height:.8;
+      color:rgba(255,255,255,.035);
+      letter-spacing:.03em;
+    }
+    .hero-grid{display:grid;gap:34px;align-items:center}
+    @media(min-width:980px){.hero-grid{grid-template-columns:.96fr 1.04fr}}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      padding:10px 13px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 8px var(--red-soft)}
+    .htitle{
+      margin-top:22px;
+      font-size:clamp(72px,12vw,156px);
+      line-height:.79;
+      text-transform:uppercase;
+    }
+    .ra{color:var(--red)}
+    .out{-webkit-text-stroke:1px rgba(255,255,255,.62);color:transparent}
+    .hsub{
+      max-width:650px;
+      margin-top:24px;
+      color:rgba(255,255,255,.72);
+      font-size:clamp(15px,1.4vw,18px);
+      line-height:1.8;
+    }
+    .hacts{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .hero-show{
+      position:relative;
+      min-height:540px;
+      display:grid;
+      grid-template-columns:1fr .72fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .hero-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid var(--border);
+      background:#131313;
+      min-height:240px;
+      cursor:pointer;
+      box-shadow:0 34px 90px rgba(0,0,0,.34);
+    }
+    .hero-card.big{grid-row:span 2}
+    .hero-card img{width:100%;height:100%;object-fit:cover;transition:.55s ease}
+    .hero-card:hover img{transform:scale(1.05)}
+    .hero-card::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,transparent 42%,rgba(0,0,0,.76));
+    }
+    .hero-cap{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:2;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+    @media(max-width:700px){
+      .hero{padding-top:128px}
+      .hero-show{grid-template-columns:1fr;min-height:auto}
+      .hero-card{min-height:290px}
+      .hero-card.big{grid-row:auto}
+      .hacts .btn{width:100%}
+    }
+
+    .ticker{overflow:hidden;border-block:1px solid var(--border);background:rgba(0,0,0,.36);backdrop-filter:blur(10px)}
+    .track{display:flex;width:max-content;animation:ticker 14s linear infinite}
+    .ti{
+      display:flex;align-items:center;gap:24px;
+      padding:18px 24px;
+      color:#fff;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(28px,4vw,52px);
+      line-height:1;
+      letter-spacing:.04em;
+      white-space:nowrap;
+      text-transform:uppercase;
+    }
+    .ts{color:#fff;min-width:18px;text-align:center}
+    @keyframes ticker{to{transform:translateX(-50%)}}
+
+    section{padding:86px 0}
+    .head-row{display:flex;flex-direction:column;gap:18px;margin-bottom:30px}
+    .eyebrow{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
+    .stitle{font-size:clamp(54px,8vw,105px);line-height:.86;text-transform:uppercase}
+    .lead{max-width:650px;color:var(--muted);line-height:1.85;font-size:15.5px}
+    @media(min-width:900px){.head-row{flex-direction:row;justify-content:space-between;align-items:flex-end}.head-row .lead{max-width:440px}}
+
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border);background:rgba(255,255,255,.03)}
+    @media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr)}}
+    .si{padding:28px 16px;text-align:center;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .snum{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,78px);line-height:1;color:#fff}
+    .sl{margin-top:8px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+    .cards{display:grid;gap:16px}
+    @media(min-width:760px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1100px){.cards{grid-template-columns:repeat(4,1fr)}}
+    .card{
+      position:relative;
+      overflow:hidden;
+      min-height:250px;
+      padding:28px;
+      border:1px solid var(--border);
+      background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+      border-radius:24px;
+    }
+    .card::before{
+      content:'';
+      position:absolute;
+      inset:auto -35% -45% auto;
+      width:190px;height:190px;
+      background:radial-gradient(circle,var(--red-soft),transparent 66%);
+    }
+    .ico{
+      width:52px;height:52px;
+      display:flex;align-items:center;justify-content:center;
+      border-radius:13px;
+      background:var(--red-soft);
+      border:1px solid var(--red-border);
+      color:var(--red);
+      font-size:21px;
+      margin-bottom:24px;
+    }
+    .ct{font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:.95;text-transform:uppercase}
+    .cd{margin-top:16px;color:var(--muted);font-size:14px;line-height:1.75}
+
+    .feature{
+      display:grid;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media(min-width:980px){.feature{grid-template-columns:.9fr 1.1fr}}
+    .feature-media{
+      min-height:440px;
+      border-radius:28px;
+      border:1px solid var(--border);
+      overflow:hidden;
+      cursor:pointer;
+      background:#151515;
+    }
+    .feature-media img{width:100%;height:100%;object-fit:cover}
+    .panel{
+      border-radius:28px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      padding:34px;
+    }
+    .list{display:grid;gap:14px;margin-top:24px}
+    .li{display:flex;gap:12px;align-items:flex-start;color:rgba(255,255,255,.72);font-size:14px;line-height:1.65}
+    .li i{margin-top:4px;color:var(--red)}
+
+    .model-grid{display:grid;gap:16px}
+    @media(min-width:900px){.model-grid{grid-template-columns:repeat(3,1fr)}}
+    .model{
+      padding:26px;
+      border-radius:24px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+    }
+    .model-b{display:inline-flex;margin-bottom:18px;color:var(--red);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+    .model h3{font-size:36px;line-height:1;text-transform:uppercase}
+    .model p{margin-top:12px;color:var(--muted);font-size:14px;line-height:1.75}
+
+    .gallery{display:grid;gap:14px}
+    @media(min-width:760px){.gallery{grid-template-columns:repeat(3,1fr)}}
+    .gitem{
+      position:relative;
+      overflow:hidden;
+      min-height:330px;
+      border-radius:24px;
+      border:1px solid var(--border);
+      background:#141414;
+      cursor:pointer;
+    }
+    .gitem:nth-child(2){min-height:420px}
+    .gitem img{width:100%;height:100%;object-fit:cover;transition:.5s ease}
+    .gitem:hover img{transform:scale(1.05)}
+    .govl{
+      position:absolute;
+      inset:auto 0 0;
+      padding:22px;
+      background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));
+    }
+    .govl-t{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+
+    .cta{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      border:1px solid var(--red-border);
+      background:
+        linear-gradient(135deg,rgba(200,16,46,.88),rgba(111,5,20,.96)),
+        radial-gradient(circle at 80% 12%,rgba(255,255,255,.18),transparent 30%);
+      padding:42px;
+      display:grid;
+      gap:24px;
+      align-items:center;
+    }
+    @media(min-width:900px){.cta{grid-template-columns:1fr auto}}
+    .cta h2{font-size:clamp(48px,7vw,88px);line-height:.86;text-transform:uppercase}
+    .cta p{margin-top:14px;max-width:650px;color:rgba(255,255,255,.78);line-height:1.8}
+    .cta .btn{background:#fff;color:#111;box-shadow:none}
+
+    footer{border-top:1px solid var(--border);padding:34px 0;color:var(--muted)}
+    .fin{display:flex;flex-direction:column;gap:20px}
+    @media(min-width:760px){.fin{flex-direction:row;justify-content:space-between;align-items:center}}
+
+    .sticky-callbar{
+      position:fixed;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      z-index:90;
+      border:1px solid var(--border);
+      background:rgba(12,12,12,.82);
+      backdrop-filter:blur(18px);
+      border-radius:18px;
+      padding:10px;
+      box-shadow:0 22px 70px rgba(0,0,0,.42);
+    }
+    .call-in{display:flex;flex-direction:column;gap:10px}
+    @media(min-width:680px){.call-in{flex-direction:row;justify-content:space-between;align-items:center}}
+    .call-copy{padding:4px 8px}
+    .call-copy strong{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+    .call-copy span{display:block;margin-top:3px;color:var(--muted);font-size:12px}
+    .call-main{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border-radius:14px;
+      background:var(--red);
+      padding:14px 20px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:130;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.94);
+      padding:18px;
+    }
+    .lightbox.open{display:flex}
+    .lb-img{max-width:94vw;max-height:78vh;object-fit:contain;border-radius:14px;box-shadow:0 24px 90px rgba(0,0,0,.66)}
+    .lb-ui{
+      position:absolute;
+      left:18px;
+      right:18px;
+      top:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+    }
+    .lb-btn{
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      border-radius:999px;
+      padding:12px 16px;
+      font-weight:800;
+      cursor:pointer;
+      backdrop-filter:blur(10px);
+    }
+    .lb-side{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:48px;height:48px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      cursor:pointer;
+      font-size:18px;
+    }
+    .lb-prev{left:22px}
+    .lb-next{right:22px}
+    .lb-count{color:#fff;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+
+    .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .rv.on{opacity:1;transform:none}
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
   </style>
 </head>
-<body class="antialiased">
+<body>
+  <div id="pagebg-wrap" aria-hidden="true">
+    <video id="pagebg-video" autoplay muted loop playsinline>
+      <source src="background2.mp4" type="video/mp4">
+    </video>
+  </div>
 
-  <nav class="sticky top-0 z-40 border-b border-black/5 bg-[#f6efe7]/85 backdrop-blur-xl">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-      <a href="index.html" class="inline-flex items-center gap-3 text-sm font-extrabold uppercase tracking-[0.18em] text-[var(--brand)]">
-        <i class="fas fa-arrow-left"></i> Asosiy Sahifa
-      </a>
-      <div class="text-sm font-bold text-[var(--muted)]">Tent va Tentovka</div>
-    </div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nl" aria-label="Lider Avtotex 555">
+      <div class="nlm" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <defs><path id="brand-ring-nav" d="M50,50 m-39,0 a39,39 0 1,1 78,0 a39,39 0 1,1 -78,0"/></defs>
+          <text><textPath href="#brand-ring-nav" startOffset="0%">LEADER AVTO TENT &bull; LEADER AVTO TENT &bull;</textPath></text>
+        </svg>
+        <div class="nlm-core"><img src="images/logo.png" alt="Leader Avto Tent 555 logotipi"></div>
+      </div>
+      <div>
+        <div class="nltitle">Lider Avtotex 555</div>
+        <div class="nlsub">Tent va Tentovka</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Asosiy</a></li>
+      <li><a href="#advantages">Afzallik</a></li>
+      <li><a href="#types">Turlari</a></li>
+      <li><a href="#gallery">Rasmlar</a></li>
+    </ul>
+    <a href="tel:+998977720990" id="nav-cta" class="btn btn-red"><i class="fas fa-phone"></i>Aloqaga chiqish</a>
   </nav>
 
-  <section class="px-4 pb-16 pt-14 sm:px-6 lg:px-8 lg:pb-20 lg:pt-20">
-    <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.02fr_0.98fr]">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
       <div>
-        <div class="inline-flex items-center gap-3 rounded-full border border-black/10 bg-white/75 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[var(--muted)]">
-          <span class="h-2.5 w-2.5 rounded-full bg-[var(--brand)]"></span>
-          Lider Avtotex 555
+        <div class="tag rv">Premium Tent Kuzov</div>
+        <h1 class="htitle rv d1">
+          Tez<br>
+          Yuklash Uchun<br>
+          <span class="ra">Mustahkam</span><br>
+          <span class="out">Tent.</span>
+        </h1>
+        <p class="hsub rv d2">
+          Damas 2, Labo, Shineray T30, Shineray T32, Shineray T50, Changan, KIA Bongo va JAC uchun buyurtma asosida tent va tentovka kuzovlari tayyorlaymiz. Galvaniz karkas, suvga chidamli tent mato, qulay ochilish tizimi va brending uchun tayyor sirt - hammasi mijoz biznesiga moslab qilinadi.
+        </p>
+        <div class="hacts rv d3">
+          <a href="tel:+998977720990" class="btn btn-red"><i class="fas fa-phone-volume"></i>Aloqaga chiqish</a>
+          <a href="#advantages" class="btn btn-ghost">Batafsil ko'rish <i class="fas fa-arrow-right"></i></a>
         </div>
-        <h1 class="mt-6 text-5xl font-bold leading-[0.98] text-[var(--ink)] md:text-6xl">Tent va tentovka tizimlari tezkor yuk tashish uchun qulay yechim beradi.</h1>
-        <p class="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-          Tentli kuzovlar yengil vazn, tez yuklash-tushirish, moslashuvchan ochilish va ekspluatatsiyadagi qulaylik sabab ko‘plab yo‘nalishlarda eng talabgir yechimlardan biri hisoblanadi.
+      </div>
+
+      <div class="hero-show rv d2">
+        <div class="hero-card big">
+          <img src="images/tent-1.jpg" data-fallback="images/photo_42_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Labo tent kuzov" data-lightbox>
+          <div class="hero-cap">Labo uchun tent kuzov</div>
+        </div>
+        <div class="hero-card">
+          <img src="images/tent-2.jpg" data-fallback="images/photo_30_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Qora tent kuzov" data-lightbox>
+          <div class="hero-cap">Qora tent qoplama</div>
+        </div>
+        <div class="hero-card">
+          <img src="images/tent-3.jpg" data-fallback="images/photo_53_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Tayyor tent kuzovi" data-lightbox>
+          <div class="hero-cap">Tayyorlangan loyiha</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <span class="ti">Galvaniz Karkas<span class="ts">★</span></span>
+      <span class="ti">Suvga Chidamli Tent<span class="ts">★</span></span>
+      <span class="ti">Yon Tomondan Ochilish<span class="ts">★</span></span>
+      <span class="ti">Brending Uchun Tayyor<span class="ts">★</span></span>
+      <span class="ti">Buyurtma Asosida<span class="ts">★</span></span>
+      <span class="ti">Galvaniz Karkas<span class="ts">★</span></span>
+      <span class="ti">Suvga Chidamli Tent<span class="ts">★</span></span>
+      <span class="ti">Yon Tomondan Ochilish<span class="ts">★</span></span>
+      <span class="ti">Brending Uchun Tayyor<span class="ts">★</span></span>
+      <span class="ti">Buyurtma Asosida<span class="ts">★</span></span>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="stats rv">
+        <div class="si"><div class="snum"><span class="counter" data-target="1000">0</span>+</div><div class="sl">Bajarilgan ishlar</div></div>
+        <div class="si"><div class="snum"><span class="counter" data-target="5">0</span></div><div class="sl">Yillik tajriba</div></div>
+        <div class="si"><div class="snum"><span class="counter" data-target="5">0</span>+</div><div class="sl">Kuzov turlari</div></div>
+        <div class="si"><div class="snum"><span class="counter" data-target="6">0</span></div><div class="sl">Tent rasmi uchun joy</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="advantages">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow rv">Nima uchun tent?</div>
+          <h2 class="stitle rv d1">Yengil, Qulay,<br>Tezkor.</h2>
+        </div>
+        <p class="lead rv d2">
+          Tentli kuzov kundalik yuk tashishda eng amaliy yechimlardan biri: yukni yomg'ir, chang va quyoshdan himoya qiladi, ortish-tushirishni tezlashtiradi va avtomobilning umumiy og'irligini ortiqcha oshirmaydi.
         </p>
       </div>
 
-      <div class="rounded-[34px] bg-[var(--ink)] p-6 text-white shadow-[0_28px_80px_rgba(23,23,23,0.18)] md:p-8">
-        <div class="flex items-center justify-between">
-          <div>
-            <div class="text-xs font-black uppercase tracking-[0.24em] text-white/60">Asosiy Yo‘nalish</div>
-            <div class="mt-2 text-3xl font-bold">Tentli Platforma</div>
-          </div>
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--brand)] text-2xl text-white">
-            <i class="fas fa-truck-ramp-box"></i>
-          </div>
-        </div>
-        <ul class="mt-8 space-y-4 text-sm leading-7 text-white/75">
-          <li><i class="fas fa-check mr-3 text-[#ffb188]"></i>Suv va quyoshga chidamli tent materiali</li>
-          <li><i class="fas fa-check mr-3 text-[#ffb188]"></i>Yon tomondan ochiladigan va orqa eshikli variantlar</li>
-          <li><i class="fas fa-check mr-3 text-[#ffb188]"></i>Karkas balandligi va shakli buyurtma asosida</li>
-          <li><i class="fas fa-check mr-3 text-[#ffb188]"></i>Brend yozuvi yoki reklama bosmasi uchun qulay sirt</li>
-        </ul>
+      <div class="cards">
+        <article class="card rv">
+          <div class="ico"><i class="fas fa-weight-hanging"></i></div>
+          <div class="ct">Yengil<br>Konstruktsiya</div>
+          <p class="cd">Metall yopiq kuzovga nisbatan yengilroq yechim. Bu yuk tashishdagi foydali hajm va harakat qulayligini saqlashga yordam beradi.</p>
+        </article>
+        <article class="card rv d1">
+          <div class="ico"><i class="fas fa-truck-ramp-box"></i></div>
+          <div class="ct">Tez<br>Yuklash</div>
+          <p class="cd">Yon yoki orqa tomondan ochiladigan konstruksiya orqali yukni tez joylash, forklift yoki qo'l mehnati bilan qulay ishlash mumkin.</p>
+        </article>
+        <article class="card rv d2">
+          <div class="ico"><i class="fas fa-cloud-rain"></i></div>
+          <div class="ct">Ob-havoga<br>Chidamli</div>
+          <p class="cd">Suvga chidamli tent mato mahsulotni yomg'ir, qor, chang va quyoshdan himoya qilish uchun tanlanadi.</p>
+        </article>
+        <article class="card rv d3">
+          <div class="ico"><i class="fas fa-palette"></i></div>
+          <div class="ct">Reklama<br>Ko'rinishi</div>
+          <p class="cd">Tent yuzasiga brend nomi, logotip yoki reklama dizayni joylash mumkin. Mashina harakatdagi reklama maydoniga aylanadi.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
-      <div class="card rounded-[30px] p-6">
-        <div class="text-xs font-black uppercase tracking-[0.22em] text-[var(--brand)]">Afzallik</div>
-        <h2 class="mt-3 text-2xl font-bold">Yengil konstruktsiya</h2>
-        <p class="mt-4 text-sm leading-7 text-[var(--muted)]">Qattiq metall kuzovga nisbatan yengilroq bo‘lib, umumiy yuk foydasini oshirishga yordam beradi.</p>
+  <section>
+    <div class="wrap feature">
+      <div class="feature-media rv">
+        <img src="images/tent-4.jpg" data-fallback="images/photo_68_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Brendlangan tent kuzov" data-lightbox>
       </div>
-      <div class="card rounded-[30px] p-6">
-        <div class="text-xs font-black uppercase tracking-[0.22em] text-[var(--brand)]">Afzallik</div>
-        <h2 class="mt-3 text-2xl font-bold">Tez yuklash</h2>
-        <p class="mt-4 text-sm leading-7 text-[var(--muted)]">Yon va orqa tomondan ochilish imkoniyati ortish-tushirish jarayonini tezlashtiradi.</p>
-      </div>
-      <div class="card rounded-[30px] p-6">
-        <div class="text-xs font-black uppercase tracking-[0.22em] text-[var(--brand)]">Afzallik</div>
-        <h2 class="mt-3 text-2xl font-bold">Moslashuvchanlik</h2>
-        <p class="mt-4 text-sm leading-7 text-[var(--muted)]">Platforma balandligi, tent rangi, eshik konfiguratsiyasi va reklama ko‘rinishi buyurtma asosida tanlanadi.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl rounded-[36px] border border-black/10 bg-[var(--paper)] p-8 shadow-[0_22px_54px_rgba(23,23,23,0.05)] md:p-10">
-      <div class="text-xs font-black uppercase tracking-[0.24em] text-[var(--brand)]">Qaysi Yuklar Uchun</div>
-      <h2 class="mt-4 max-w-3xl text-4xl font-bold text-[var(--ink)]">Tent yechimi mos bo‘ladigan asosiy yo‘nalishlar</h2>
-
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <div class="rounded-[28px] border border-black/10 bg-white p-6">
-          <h3 class="text-2xl font-bold">Qurilish materiallari</h3>
-          <p class="mt-4 text-sm leading-7 text-[var(--muted)]">Profil, list, qadoqlangan mahsulot va boshqa o‘lchamli yuklarni tashishda qulay.</p>
-        </div>
-        <div class="rounded-[28px] border border-black/10 bg-white p-6">
-          <h3 class="text-2xl font-bold">Distribyutor mahsulotlari</h3>
-          <p class="mt-4 text-sm leading-7 text-[var(--muted)]">Kundalik savdo va yetkazib berish uchun ortish jarayonini soddalashtiradi.</p>
-        </div>
-        <div class="rounded-[28px] border border-black/10 bg-white p-6">
-          <h3 class="text-2xl font-bold">Umumiy logistika</h3>
-          <p class="mt-4 text-sm leading-7 text-[var(--muted)]">Har xil turdagi qadoqlangan va paletlangan yuklar uchun universal variant.</p>
-        </div>
-        <div class="rounded-[28px] border border-black/10 bg-white p-6">
-          <h3 class="text-2xl font-bold">Reklama tashuvchi flot</h3>
-          <p class="mt-4 text-sm leading-7 text-[var(--muted)]">Tent yuzasida kompaniya brendini aks ettirish oson bo‘lgani uchun reklama ko‘rinishi ham kuchayadi.</p>
+      <div class="panel rv d1">
+        <div class="tag">Material va yig'ish</div>
+        <h2 class="stitle" style="margin-top:20px;font-size:clamp(50px,7vw,92px)">Har Bir Detal<br>Hisobga Olinadi.</h2>
+        <p class="lead" style="margin-top:18px">
+          Tentovka faqat mato tortish emas. To'g'ri karkas, kuchli mahkamlash, qulay ochilish va sifatli tikuv yuk tashishda har kuni seziladi. Shuning uchun har bir loyiha avtomobil o'lchami, yuk turi va ishlash sharoitiga qarab qilinadi.
+        </p>
+        <div class="list">
+          <div class="li"><i class="fas fa-check"></i><span>Galvanizlangan yoki bo'yalgan metall karkas - zanglashga chidamli va uzoq xizmat qiladigan yechim.</span></div>
+          <div class="li"><i class="fas fa-check"></i><span>650-750 g/m&sup2; zichlikdagi tent mato - mijoz talabi va yuk yo'nalishiga qarab tanlanadi.</span></div>
+          <div class="li"><i class="fas fa-check"></i><span>Yon parda, orqa eshik, yuqoriga ochiladigan yoki klassik tortma variantlar tayyorlanadi.</span></div>
+          <div class="li"><i class="fas fa-check"></i><span>Mahkamlash halqalari, tros, ilgak, qulf va bort bilan ishlash qulayligi tekshiriladi.</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">
-    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1fr_1fr]">
-      <div class="card rounded-[34px] p-8">
-        <div class="text-xs font-black uppercase tracking-[0.24em] text-[var(--brand)]">Ishlab Chiqarish</div>
-        <h2 class="mt-4 text-3xl font-bold">Tent tayyorlash bosqichlari</h2>
-        <ol class="mt-6 space-y-4 text-sm leading-7 text-[var(--muted)]">
-          <li><span class="font-extrabold text-[var(--ink)]">1.</span> Platforma o‘lchami va karkas balandligini aniqlash.</li>
-          <li><span class="font-extrabold text-[var(--ink)]">2.</span> Metall karkasni tayyorlash va mustahkamlash.</li>
-          <li><span class="font-extrabold text-[var(--ink)]">3.</span> Tent materialini kesish, tikish va fiksatsiya qilish.</li>
-          <li><span class="font-extrabold text-[var(--ink)]">4.</span> Ochilish mexanizmini tekshirib topshirish.</li>
-        </ol>
+  <section id="types">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow rv">Tent turlari</div>
+          <h2 class="stitle rv d1">Qaysi Biznesga<br>Qaysi Yechim?</h2>
+        </div>
+        <p class="lead rv d2">Kuzov turi yukingizga qarab tanlanadi. Biz sizga shunchaki tent emas, har kuni ishlaydigan amaliy konstruktsiya tavsiya qilamiz.</p>
       </div>
 
-      <div class="rounded-[34px] bg-[var(--brand)] p-8 text-white">
-        <div class="text-xs font-black uppercase tracking-[0.24em] text-white/65">Sizdan Kerak</div>
-        <h2 class="mt-4 text-3xl font-bold">Buyurtma uchun kerakli ma’lumotlar</h2>
-        <ul class="mt-6 space-y-4 text-sm leading-7 text-white/82">
-          <li><i class="fas fa-truck mr-3 text-white"></i>Avtomobil turi va platforma o‘lchami</li>
-          <li><i class="fas fa-arrows-up-down-left-right mr-3 text-white"></i>Qaysi tomondan ochilishi kerakligi</li>
-          <li><i class="fas fa-palette mr-3 text-white"></i>Tent rangi va brending talabi</li>
-          <li><i class="fas fa-weight-hanging mr-3 text-white"></i>Yukning taxminiy turi va ishlatish intensivligi</li>
-        </ul>
+      <div class="model-grid">
+        <div class="model rv">
+          <span class="model-b">Variant 01</span>
+          <h3>Standart Tent</h3>
+          <p>Qadoqlangan mahsulot, kundalik yetkazib berish va umumiy yuklar uchun eng ommabop variant. Orqa tomondan ochiladi, sodda va ishonchli.</p>
+        </div>
+        <div class="model rv d1">
+          <span class="model-b">Variant 02</span>
+          <h3>Yon Ochiladigan</h3>
+          <p>Tez-tez ortib-tushiriladigan yuklar uchun qulay. Yon parda ochiladi, yukga kirish osonlashadi va vaqt tejaladi.</p>
+        </div>
+        <div class="model rv d2">
+          <span class="model-b">Variant 03</span>
+          <h3>Brendlangan Tent</h3>
+          <p>Kompaniya logotipi, telefon raqami va reklama dizayni bilan ishlab beriladi. Flot tashqi ko'rinishi professional bo'ladi.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="border-t border-black/10 py-8">
-    <div class="mx-auto max-w-6xl px-4 text-sm text-[var(--muted)] sm:px-6 lg:px-8">
-      © 2026 Lider Avtotex 555 — Tent va tentovka sahifasi
+  <section id="gallery">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow rv">Rasmlar</div>
+          <h2 class="stitle rv d1">Tent Ishlari<br>Galereyasi.</h2>
+        </div>
+        <p class="lead rv d2">
+          Quyidagi rasm joylari `images/tent-1.jpg` dan `images/tent-6.jpg` gacha tayyorlangan. Siz shu nomlarda rasmlarni `images` papkasiga qo'shsangiz, sahifada avtomatik ko'rinadi.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <div class="gitem rv"><img src="images/tent-1.jpg" data-fallback="images/photo_42_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Labo tent kuzov" data-lightbox><div class="govl"><div class="govl-t">tent-1.jpg - asosiy yon ko'rinish</div></div></div>
+        <div class="gitem rv d1"><img src="images/tent-2.jpg" data-fallback="images/photo_30_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Qora tent kuzov" data-lightbox><div class="govl"><div class="govl-t">tent-2.jpg - qora tent varianti</div></div></div>
+        <div class="gitem rv d2"><img src="images/tent-3.jpg" data-fallback="images/photo_53_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Tayyor tent kuzov" data-lightbox><div class="govl"><div class="govl-t">tent-3.jpg - tayyor loyiha</div></div></div>
+        <div class="gitem rv d3"><img src="images/tent-4.jpg" data-fallback="images/photo_68_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Brendlangan tent kuzov" data-lightbox><div class="govl"><div class="govl-t">tent-4.jpg - brendlangan kuzov</div></div></div>
+        <div class="gitem rv d4"><img src="images/tent-5.jpg" data-fallback="images/photo_15_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Tent platforma" data-lightbox><div class="govl"><div class="govl-t">tent-5.jpg - platforma va bort</div></div></div>
+        <div class="gitem rv d4"><img src="images/tent-6.jpg" data-fallback="images/photo_59_2026-04-19_01-40-33.jpg" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="Ichki platforma" data-lightbox><div class="govl"><div class="govl-t">tent-6.jpg - ichki qism yoki orqa ko'rinish</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap cta rv">
+      <div>
+        <h2>Tent Kuzov Kerakmi?</h2>
+        <p>Avtomobil modelini, kerakli o'lchamni va qaysi tomondan ochilishi kerakligini ayting. Sizga eng mos tent konstruktsiyasini tavsiya qilib, narx va muddat bo'yicha maslahat beramiz.</p>
+      </div>
+      <a href="tel:+998977720990" class="btn"><i class="fas fa-phone-volume"></i>+998 97 772 09 90</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap fin">
+      <a href="index.html" class="nl" aria-label="Lider Avtotex 555">
+        <div class="nlm" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <defs><path id="brand-ring-footer" d="M50,50 m-39,0 a39,39 0 1,1 78,0 a39,39 0 1,1 -78,0"/></defs>
+            <text><textPath href="#brand-ring-footer" startOffset="0%">LEADER AVTO TENT &bull; LEADER AVTO TENT &bull;</textPath></text>
+          </svg>
+          <div class="nlm-core"><img src="images/logo.png" alt="Leader Avto Tent 555 logotipi"></div>
+        </div>
+        <div>
+          <div class="nltitle">Lider Avtotex 555</div>
+          <div class="nlsub">Tent va Tentovka</div>
+        </div>
+      </a>
+      <div>(c) 2026 Lider Avtotex 555 - Tent va tentovka sahifasi</div>
     </div>
   </footer>
 
+  <div class="sticky-callbar">
+    <div class="call-in">
+      <div class="call-copy">
+        <strong>Tent va tentovka bo'yicha maslahat</strong>
+        <span>Telefon tugmasini bosing - qo'ng'iroq oynasi ochiladi.</span>
+      </div>
+      <a href="tel:+998977720990" class="call-main"><i class="fas fa-phone"></i>+998 97 772 09 90</a>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-ui">
+      <button class="lb-btn" id="lbBack"><i class="fas fa-arrow-left"></i> Qaytish</button>
+      <div class="lb-count" id="lbCounter">1 / 1</div>
+      <button class="lb-btn" id="lbToggle">Auto Play</button>
+    </div>
+    <button class="lb-side lb-prev" id="lbPrev" aria-label="Oldingi rasm"><i class="fas fa-chevron-left"></i></button>
+    <img class="lb-img" id="lbImage" alt="Kattalashtirilgan rasm">
+    <button class="lb-side lb-next" id="lbNext" aria-label="Keyingi rasm"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 12), { passive:true });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold:.14 });
+    document.querySelectorAll('.rv').forEach((el) => revealObserver.observe(el));
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.target || 0);
+        const step = Math.max(1, target / 42);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target;
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current);
+          }
+        }, 18);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold:.6 });
+    document.querySelectorAll('.counter').forEach((el) => counterObserver.observe(el));
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbBack = document.getElementById('lbBack');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbToggle = document.getElementById('lbToggle');
+    const galleryImages = Array.from(document.querySelectorAll('[data-lightbox]'));
+    let currentIndex = 0;
+    let autoTimer = null;
+
+    function activeSrc(img) {
+      return img.currentSrc || img.src;
+    }
+
+    function showImage(index) {
+      currentIndex = (index + galleryImages.length) % galleryImages.length;
+      lbImage.src = activeSrc(galleryImages[currentIndex]);
+      lbCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+    }
+
+    function openLightbox(index) {
+      showImage(index);
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      stopAuto();
+    }
+
+    function nextImage() { showImage(currentIndex + 1); }
+    function prevImage() { showImage(currentIndex - 1); }
+
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+      lbToggle.textContent = 'Auto Play';
+    }
+
+    function toggleAuto() {
+      if (autoTimer) {
+        stopAuto();
+        return;
+      }
+      lbToggle.textContent = 'Pause';
+      autoTimer = setInterval(nextImage, 1700);
+    }
+
+    galleryImages.forEach((img, index) => img.addEventListener('click', () => openLightbox(index)));
+    lbBack.addEventListener('click', closeLightbox);
+    lbNext.addEventListener('click', nextImage);
+    lbPrev.addEventListener('click', prevImage);
+    lbToggle.addEventListener('click', toggleAuto);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    addEventListener('keydown', (event) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowRight') nextImage();
+      if (event.key === 'ArrowLeft') prevImage();
+    });
+  </script>
 </body>
 </html>
